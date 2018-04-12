@@ -29,6 +29,8 @@
   mopidy.spotify.enabled = process.env.MOPIDY_SPOTIFY_ENABLED === '1' ? true : false;
   mopidy.spotify.username = process.env.MOPIDY_SPOTIFY_USERNAME || "none";
   mopidy.spotify.password = process.env.MOPIDY_SPOTIFY_PASSWORD || "none";
+  mopidy.spotify.client_id = process.env.MOPIDY_SPOTIFY_CLIENT_ID || "none";
+  mopidy.spotify.client_secret = process.env.MOPIDY_SPOTIFY_CLIENT_SECRET || "none";
   // Soundcloud config
   mopidy.soundcloud.enabled = process.env.MOPIDY_SOUNDCLOUD_ENABLED === '1' ? true : false;
   mopidy.soundcloud.auth_token = process.env.MOPIDY_SOUNDCLOUD_AUTH_TOKEN || "none";
@@ -36,6 +38,7 @@
   mopidy.youtube.enabled = process.env.MOPIDY_YOUTUBE_ENABLED === '1' ? true : false;
 
   fs.writeFileSync('/etc/mopidy/mopidy.conf', ini.stringify(mopidy));
+  fs.writeFileSync('/root/.config/mopidy/mopidy.conf', ini.stringify(mopidy));
   fs.writeFileSync('/etc/shairport-sync.conf', 'general =\n{\nname = "BoomBeastic-' + process.env.RESIN_DEVICE_UUID.substring(0, 7) + '";\n};');
 
   // Mopidy

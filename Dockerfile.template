@@ -7,6 +7,7 @@ apt-get update && apt-get install -yq --no-install-recommends \
   python-dev \
   python-pip \
   git \
+  vim \
   autoconf \
   automake \
   libtool \
@@ -90,6 +91,8 @@ RUN systemctl disable haproxy mopidy shairport-sync
 
 ## Uncomment if you want systemd
 ENV INITSYSTEM on
+
+COPY ./Dockerbin/mopidy.conf /root/.config/mopidy/mopidy.conf
 
 # Start app
 CMD ["bash", "/usr/src/app/start.sh"]
