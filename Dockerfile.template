@@ -6,6 +6,7 @@ wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/jessie.lis
 apt-get update && apt-get install -yq --no-install-recommends \
   python-dev \
   python-pip \
+  vim \
   git \
   vim \
   autoconf \
@@ -76,9 +77,6 @@ RUN ./node_modules/.bin/bower --allow-root install \
 
 # Move app to filesystem
 COPY ./app ./
-
-# Compile coffee
-RUN ./node_modules/.bin/coffee -c ./src
 
 # Install shairport
 RUN git clone https://github.com/mikebrady/shairport-sync.git shairport-sync --depth 1 \
