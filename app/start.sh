@@ -35,4 +35,7 @@ fi
 # Start haproxy
 service haproxy start >/dev/null 2>&1 || true
 
+# Start raspotify
+service raspotify start || true
+
 node /usr/src/app/index.js

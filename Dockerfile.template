@@ -37,6 +37,8 @@ apt-get update && apt-get install -yq --no-install-recommends \
   iw \
   libdbus-1-dev \
   libexpat-dev \
+  curl \
+  apt-transport-https \
   rfkill && apt-get clean && rm -rf /var/lib/apt/lists/* && \
 echo 'ENABLED=1' >> /etc/default/haproxy
 
@@ -91,6 +93,12 @@ RUN systemctl disable haproxy mopidy shairport-sync
 ENV INITSYSTEM on
 
 COPY ./Dockerbin/mopidy.conf /root/.config/mopidy/mopidy.conf
+
+RUN curl -sSL https://dtcooper.github.io/raspotify/key.asc | sudo apt-key add -v - \
+    && echo 'deb https://dtcooper.github.io/raspotify jessie main' | sudo tee /etc/apt/sources.list.d/raspotify.list \
+    && apt-get update \
+    && apt-get -y install raspotify
+    && rm -rf /var/lib/apt/lists/*
 
 # Start app
 CMD ["bash", "/usr/src/app/start.sh"]
