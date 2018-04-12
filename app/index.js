@@ -36,6 +36,7 @@
   mopidy.youtube.enabled = process.env.MOPIDY_YOUTUBE_ENABLED === '1' ? true : false;
 
   fs.writeFileSync('/etc/mopidy/mopidy.conf', ini.stringify(mopidy));
+  fs.writeFileSync('/root/.config/mopidy/mopidy.conf', ini.stringify(mopidy));
   fs.writeFileSync('/etc/shairport-sync.conf', 'general =\n{\nname = "BoomBeastic-' + process.env.RESIN_DEVICE_UUID.substring(0, 7) + '";\n};');
 
   // Mopidy
