@@ -8,6 +8,7 @@ apt-get update && apt-get install -yq --no-install-recommends \
   python-pip \
   vim \
   git \
+  vim \
   autoconf \
   automake \
   libtool \
